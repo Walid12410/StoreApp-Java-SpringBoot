@@ -5,7 +5,9 @@ import com.example.ecommerce.storeApp.model.entity.Category;
 import com.example.ecommerce.storeApp.model.mapper.CategoryMapper;
 import com.example.ecommerce.storeApp.repository.CatRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +24,7 @@ public class CategoryService {
         List<Category> categoryWithSubCategory = this.catRepo.findAllWithSubCategories();
 
         if(categoryWithSubCategory.isEmpty()){
-            return null;
+            return Collections.emptyList();
         }
 
         return categoryWithSubCategory.stream()
@@ -34,7 +36,7 @@ public class CategoryService {
     public List<CategoryDTO> getAllCategory() {
         List<Category> categories = this.catRepo.findAll();
 
-        if (categories == null || categories.isEmpty()) {
+        if (categories.isEmpty()) {
             return Collections.emptyList(); // Return an empty list instead of null
         }
 
@@ -54,4 +56,21 @@ public class CategoryService {
         return CategoryMapper.toDtoOnlyCategory(saveCategory);
     }
 
+    public CategoryDTO updateCategory(Integer id, CategoryDTO categoryDTO){
+        Category existCategory = this.catRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found with ID: " + id));
+
+        existCategory.setCategoryName(categoryDTO.getCategoryName());
+
+        Category updateCategory = this.catRepo.save(existCategory);
+
+        return CategoryMapper.toDtoOnlyCategory(updateCategory);
+    }
+
+    public void deleteCategory(Integer id){
+        Category existCategory = this.catRepo.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found with ID: " + id));
+
+        this.catRepo.delete(existCategory);
+    }
 }
