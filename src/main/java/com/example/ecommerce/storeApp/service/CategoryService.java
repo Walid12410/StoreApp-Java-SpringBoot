@@ -71,6 +71,8 @@ public class CategoryService {
         Category existCategory = this.catRepo.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found with ID: " + id));
 
+        // @TODO: check if category used in subCategory before deleting it
+
         this.catRepo.delete(existCategory);
     }
 }

@@ -3,6 +3,7 @@ package com.example.ecommerce.storeApp.controller;
 import com.example.ecommerce.storeApp.model.dto.CategoryDTO;
 import com.example.ecommerce.storeApp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class CategoryController {
     public ResponseEntity<CategoryDTO> createCategoryController(@RequestBody CategoryDTO categoryDTO){
         CategoryDTO savedCategoryDTO = categoryService.saveCategory(categoryDTO);
 
-        return ResponseEntity.ok(savedCategoryDTO);
+        return new ResponseEntity<>(savedCategoryDTO,HttpStatus.CREATED);
     }
 
 
@@ -47,13 +48,13 @@ public class CategoryController {
             return ResponseEntity.ok(Collections.emptyList());
         }
 
-        return ResponseEntity.ok(categoryWithSubCategory);
+        return new ResponseEntity<>(categoryWithSubCategory,HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDTO> updateCategoryController(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO){
         CategoryDTO updatedCategory = this.categoryService.updateCategory(id,categoryDTO);
-        return ResponseEntity.ok(updatedCategory);
+        return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
     }
 
 
