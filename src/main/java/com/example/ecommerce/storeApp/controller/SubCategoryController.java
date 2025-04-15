@@ -50,5 +50,4 @@ public class SubCategoryController {
         this.subCategoryService.deleteSubCategory(id);
         return ResponseEntity.noContent().build();
     }
-
 }
