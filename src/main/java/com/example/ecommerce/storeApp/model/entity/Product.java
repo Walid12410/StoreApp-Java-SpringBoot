@@ -39,5 +39,6 @@ public class Product {
     private String imageId;
 
     @OneToOne(mappedBy = "subCategory", cascade = CascadeType.ALL)
+    @JoinColumn(name = "sub_category_id", nullable = false)
     private SubCategory subCategory;
 }

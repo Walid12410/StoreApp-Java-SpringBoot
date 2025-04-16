@@ -52,7 +52,9 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDTO> updateCategoryController(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO){
+    public ResponseEntity<CategoryDTO> updateCategoryController(
+            @PathVariable Integer id,
+            @RequestBody CategoryDTO categoryDTO){
         CategoryDTO updatedCategory = this.categoryService.updateCategory(id,categoryDTO);
         return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
     }
