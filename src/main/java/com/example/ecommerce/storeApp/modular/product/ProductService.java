@@ -1,10 +1,6 @@
-package com.example.ecommerce.storeApp.service;
+package com.example.ecommerce.storeApp.modular.product;
 
 
-import com.example.ecommerce.storeApp.model.dto.ProductDTO;
-import com.example.ecommerce.storeApp.model.entity.Product;
-import com.example.ecommerce.storeApp.model.mapper.ProductMapper;
-import com.example.ecommerce.storeApp.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

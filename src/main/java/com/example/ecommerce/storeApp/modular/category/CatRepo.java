@@ -1,6 +1,5 @@
-package com.example.ecommerce.storeApp.repository;
+package com.example.ecommerce.storeApp.modular.category;
 
-import com.example.ecommerce.storeApp.model.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

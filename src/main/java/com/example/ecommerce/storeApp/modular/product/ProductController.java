@@ -1,8 +1,6 @@
-package com.example.ecommerce.storeApp.controller;
+package com.example.ecommerce.storeApp.modular.product;
 
 
-import com.example.ecommerce.storeApp.model.dto.ProductDTO;
-import com.example.ecommerce.storeApp.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

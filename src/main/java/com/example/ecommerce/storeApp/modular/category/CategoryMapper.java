@@ -1,8 +1,7 @@
-package com.example.ecommerce.storeApp.model.mapper;
+package com.example.ecommerce.storeApp.modular.category;
 
-import com.example.ecommerce.storeApp.model.dto.CategoryDTO;
-import com.example.ecommerce.storeApp.model.dto.SubCategoryDTO;
-import com.example.ecommerce.storeApp.model.entity.Category;
+import com.example.ecommerce.storeApp.modular.subCategory.SubCategoryDTO;
+import com.example.ecommerce.storeApp.modular.subCategory.SubCategoryMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

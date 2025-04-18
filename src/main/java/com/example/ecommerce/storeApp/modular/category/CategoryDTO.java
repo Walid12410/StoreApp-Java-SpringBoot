@@ -1,7 +1,7 @@
-package com.example.ecommerce.storeApp.model.dto;
+package com.example.ecommerce.storeApp.modular.category;
 
 
-import com.example.ecommerce.storeApp.model.entity.Category;
+import com.example.ecommerce.storeApp.modular.subCategory.SubCategoryDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

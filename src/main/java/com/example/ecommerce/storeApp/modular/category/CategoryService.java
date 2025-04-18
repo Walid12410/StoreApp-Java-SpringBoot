@@ -1,9 +1,5 @@
-package com.example.ecommerce.storeApp.service;
+package com.example.ecommerce.storeApp.modular.category;
 
-import com.example.ecommerce.storeApp.model.dto.CategoryDTO;
-import com.example.ecommerce.storeApp.model.entity.Category;
-import com.example.ecommerce.storeApp.model.mapper.CategoryMapper;
-import com.example.ecommerce.storeApp.repository.CatRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

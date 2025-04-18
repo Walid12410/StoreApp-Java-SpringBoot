@@ -1,6 +1,5 @@
-package com.example.ecommerce.storeApp.repository;
+package com.example.ecommerce.storeApp.modular.subCategory;
 
-import com.example.ecommerce.storeApp.model.entity.SubCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SubCatRepo extends JpaRepository<SubCategory, Integer> {

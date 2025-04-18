@@ -1,8 +1,6 @@
-package com.example.ecommerce.storeApp.model.mapper;
+package com.example.ecommerce.storeApp.modular.product;
 
-import com.example.ecommerce.storeApp.model.dto.ProductDTO;
-import com.example.ecommerce.storeApp.model.dto.SubCategoryDTO;
-import com.example.ecommerce.storeApp.model.entity.Product;
+import com.example.ecommerce.storeApp.modular.subCategory.SubCategoryMapper;
 
 public class ProductMapper {
 

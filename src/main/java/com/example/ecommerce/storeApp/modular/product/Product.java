@@ -1,6 +1,7 @@
-package com.example.ecommerce.storeApp.model.entity;
+package com.example.ecommerce.storeApp.modular.product;
 
 
+import com.example.ecommerce.storeApp.modular.subCategory.SubCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

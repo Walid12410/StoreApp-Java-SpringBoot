@@ -1,8 +1,6 @@
-package com.example.ecommerce.storeApp.controller;
+package com.example.ecommerce.storeApp.modular.subCategory;
 
 
-import com.example.ecommerce.storeApp.model.dto.SubCategoryDTO;
-import com.example.ecommerce.storeApp.service.SubCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

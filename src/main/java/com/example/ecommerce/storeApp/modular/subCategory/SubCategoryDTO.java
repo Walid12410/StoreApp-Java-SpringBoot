@@ -1,4 +1,4 @@
-package com.example.ecommerce.storeApp.model.dto;
+package com.example.ecommerce.storeApp.modular.subCategory;
 
 
 import lombok.*;
