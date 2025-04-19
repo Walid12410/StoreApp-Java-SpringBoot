@@ -1,7 +1,7 @@
-package com.example.ecommerce.storeApp.modular.product;
+package com.example.ecommerce.storeApp.modular.product.dto;
 
 
-import com.example.ecommerce.storeApp.modular.subCategory.SubCategoryDTO;
+import com.example.ecommerce.storeApp.modular.subCategory.dto.SubCategoryResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDTO {
+public class ProductResponseDTO {
     private Integer id;
     private String productName;
     private String productDesc;
@@ -19,5 +19,5 @@ public class ProductDTO {
     private String stock;
     private String imageId;
     private String imageUrl;
-    private SubCategoryDTO subCategory;
+    private SubCategoryResponseDTO subCategory;
 }

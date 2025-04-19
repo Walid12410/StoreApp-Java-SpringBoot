@@ -1,5 +1,4 @@
-package com.example.ecommerce.storeApp.modular.subCategory;
-
+package com.example.ecommerce.storeApp.modular.subCategory.dto;
 
 import lombok.*;
 
@@ -7,7 +6,8 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubCategoryDTO {
+public class SubCategoryResponseDTO {
     private Integer id;
     private String subCategoryName;
+    private Integer categoryId;
 }

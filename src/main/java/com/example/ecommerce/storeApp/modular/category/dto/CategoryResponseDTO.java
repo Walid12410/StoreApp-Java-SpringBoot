@@ -1,7 +1,6 @@
-package com.example.ecommerce.storeApp.modular.category;
+package com.example.ecommerce.storeApp.modular.category.dto;
 
-
-import com.example.ecommerce.storeApp.modular.subCategory.SubCategoryDTO;
+import com.example.ecommerce.storeApp.modular.subCategory.dto.SubCategoryResponseDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL) // 💥 This is the key!
-public class CategoryDTO {
+public class CategoryResponseDTO {
     private Integer id;
     private String categoryName;
-    private List<SubCategoryDTO> subCategories;
+    private List<SubCategoryResponseDTO> subCategories;
 }

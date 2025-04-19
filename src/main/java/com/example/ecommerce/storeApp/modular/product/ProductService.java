@@ -1,6 +1,8 @@
 package com.example.ecommerce.storeApp.modular.product;
 
 
+import com.example.ecommerce.storeApp.modular.product.dto.ProductResponseDTO;
+import com.example.ecommerce.storeApp.modular.product.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,22 +18,22 @@ import java.util.List;
 public class ProductService {
 
     @Autowired
-    private ProductRepo productRepo;
+    private ProductRepository productRepository;
 
 
-    public ProductPagedResponse<ProductDTO> getAllProduct(Integer page, Integer size){
+    public ProductPagedResponse<ProductResponseDTO> getAllProduct(Integer page, Integer size){
         Pageable pageable = PageRequest.of(page, size); // page starts from 0
 
-        Page<Product> products = this.productRepo.findAll(pageable);
+        Page<Product> products = this.productRepository.findAll(pageable);
 
-        List<ProductDTO> productDTOS = products
+        List<ProductResponseDTO> productResponseDTOS = products
                 .getContent()
                 .stream()
                 .map(ProductMapper::toDto)
                 .toList();
 
         return new ProductPagedResponse<>(
-                productDTOS,
+                productResponseDTOS,
                 products.getNumber(),
                 products.getSize(),
                 products.getTotalElements(),
@@ -41,30 +43,30 @@ public class ProductService {
     }
 
 
-    public ProductDTO getProduct(Integer id){
-        Product existProduct = this.productRepo.findById(id)
+    public ProductResponseDTO getProduct(Integer id){
+        Product existProduct = this.productRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 
         return ProductMapper.toDto(existProduct);
     }
 
-    public ProductDTO updateProduct(Integer id, ProductDTO productDTO){
-        Product existProduct = this.productRepo.findById(id)
+    public ProductResponseDTO updateProduct(Integer id, ProductResponseDTO productResponseDTO){
+        Product existProduct = this.productRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
 
-        if(productDTO.getProductName() != null){
-            existProduct.setProductName(productDTO.getProductName());
+        if(productResponseDTO.getProductName() != null){
+            existProduct.setProductName(productResponseDTO.getProductName());
         }
 
-        if(productDTO.getProductDesc() != null){
-            existProduct.setProductDesc(productDTO.getProductDesc());
+        if(productResponseDTO.getProductDesc() != null){
+            existProduct.setProductDesc(productResponseDTO.getProductDesc());
         }
 
-        if(productDTO.getPrice() != null){
-            existProduct.setStock(productDTO.getStock());
+        if(productResponseDTO.getPrice() != null){
+            existProduct.setStock(productResponseDTO.getStock());
         }
 
-        if(productDTO.getSubCategory() != null){
+        if(productResponseDTO.getSubCategory() != null){
 
         }
 

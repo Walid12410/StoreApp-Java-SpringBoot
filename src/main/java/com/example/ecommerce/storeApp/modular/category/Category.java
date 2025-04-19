@@ -1,12 +1,12 @@
 package com.example.ecommerce.storeApp.modular.category;
 
-
 import com.example.ecommerce.storeApp.modular.subCategory.SubCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Table(name = "category")
@@ -25,6 +25,7 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    // Correcting the OneToMany relationship with mappedBy
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<SubCategory> subCategories;
 }

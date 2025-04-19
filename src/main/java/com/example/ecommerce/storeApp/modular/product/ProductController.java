@@ -1,6 +1,7 @@
 package com.example.ecommerce.storeApp.modular.product;
 
 
+import com.example.ecommerce.storeApp.modular.product.dto.ProductResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/")
-    public ResponseEntity<ProductPagedResponse<ProductDTO>> getProducts(
+    public ResponseEntity<ProductPagedResponse<ProductResponseDTO>> getProducts(
         @RequestParam(defaultValue = "0") Integer page,
         @RequestParam(defaultValue = "10") Integer size
     ){
@@ -22,7 +23,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDTO> getProduct(
+    public ResponseEntity<ProductResponseDTO> getProduct(
         @PathVariable Integer id
     ){
         return ResponseEntity.ok(this.productService.getProduct(id));
@@ -30,10 +31,10 @@ public class ProductController {
 
 
     @PostMapping("/private/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(
+    public ResponseEntity<ProductResponseDTO> updateProduct(
             @PathVariable Integer id,
-            @RequestBody ProductDTO productDTO
+            @RequestBody ProductResponseDTO productResponseDTO
     ){
-
+        return null;
     }
 }

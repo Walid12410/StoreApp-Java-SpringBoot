@@ -39,7 +39,7 @@ public class Product {
     @Column(name = "product_image_id")
     private String imageId;
 
-    @OneToOne(mappedBy = "subCategory", cascade = CascadeType.ALL)
-    @JoinColumn(name = "sub_category_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sub_category_id", referencedColumnName = "subCategory_id", nullable = false)
     private SubCategory subCategory;
 }

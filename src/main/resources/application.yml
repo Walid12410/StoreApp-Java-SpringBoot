@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: storeApp
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/e-commerce
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Options: none, update, create, create-drop
+    show-sql: true  # Shows SQL queries in the console
+    properties:
+      hibernate:
+        format_sql: true  # Formats the SQL query for readability
+    database-platform: org.hibernate.dialect.MySQL8Dialect  # Optional: You can use MySQL8Dialect
+
+  logging:
+    level:
+      org.springframework: DEBUG  # Logs Spring-related debug information
+      org.hibernate: DEBUG  # Logs Hibernate-related debug information
+
+  server:
+    port: 8080  # Change if you want to run on a different port
+

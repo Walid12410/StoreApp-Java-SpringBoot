@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface CatRepo extends JpaRepository<Category, Integer> {
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
-    @Query("SELECT DISTINCT c FROM Category c LEFT JOIN FETCH C.subCategories")
+    @Query("SELECT DISTINCT c FROM Category c LEFT JOIN FETCH c.subCategories")
     List<Category> findAllWithSubCategories();
 }

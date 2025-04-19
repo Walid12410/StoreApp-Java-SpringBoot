@@ -1,5 +1,8 @@
 package com.example.ecommerce.storeApp.modular.category;
 
+import com.example.ecommerce.storeApp.modular.category.dto.CategoryCreateDTO;
+import com.example.ecommerce.storeApp.modular.category.dto.CategoryResponseDTO;
+import com.example.ecommerce.storeApp.modular.category.dto.CategoryUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +21,16 @@ public class CategoryController {
 
 
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategoryController(@RequestBody CategoryDTO categoryDTO){
-        CategoryDTO savedCategoryDTO = categoryService.saveCategory(categoryDTO);
+    public ResponseEntity<CategoryResponseDTO> createCategoryController(@RequestBody CategoryCreateDTO categoryCreateDTO){
+        CategoryResponseDTO savedCategoryResponseDTO = categoryService.saveCategory(categoryCreateDTO);
 
-        return new ResponseEntity<>(savedCategoryDTO,HttpStatus.CREATED);
+        return new ResponseEntity<>(savedCategoryResponseDTO,HttpStatus.CREATED);
     }
 
 
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategoryController(){
-        List<CategoryDTO> categories = categoryService.getAllCategory();
+    public ResponseEntity<List<CategoryResponseDTO>> getAllCategoryController(){
+        List<CategoryResponseDTO> categories = categoryService.getAllCategory();
 
 
         if (categories == null || categories.isEmpty()) {
@@ -39,8 +42,8 @@ public class CategoryController {
     }
 
     @GetMapping("/category-subcategory")
-    public ResponseEntity<List<CategoryDTO>> getCategoryWithCategoryController(){
-        List<CategoryDTO> categoryWithSubCategory = categoryService.getAllCategoryAndSubCategory();
+    public ResponseEntity<List<CategoryResponseDTO>> getCategoryWithCategoryController(){
+        List<CategoryResponseDTO> categoryWithSubCategory = categoryService.getAllCategoryAndSubCategory();
 
         if (categoryWithSubCategory == null || categoryWithSubCategory.isEmpty()){
             return ResponseEntity.ok(Collections.emptyList());
@@ -50,10 +53,10 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDTO> updateCategoryController(
+    public ResponseEntity<CategoryResponseDTO> updateCategoryController(
             @PathVariable Integer id,
-            @RequestBody CategoryDTO categoryDTO){
-        CategoryDTO updatedCategory = this.categoryService.updateCategory(id,categoryDTO);
+            @RequestBody CategoryUpdateDTO categoryUpdateDTO){
+        CategoryResponseDTO updatedCategory = this.categoryService.updateCategory(id, categoryUpdateDTO);
         return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
     }
 

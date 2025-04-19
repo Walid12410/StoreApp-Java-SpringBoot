@@ -1,6 +1,9 @@
 package com.example.ecommerce.storeApp.modular.subCategory;
 
 
+import com.example.ecommerce.storeApp.modular.subCategory.dto.SubCategoryCreateDTO;
+import com.example.ecommerce.storeApp.modular.subCategory.dto.SubCategoryResponseDTO;
+import com.example.ecommerce.storeApp.modular.subCategory.dto.SubCategoryUpdateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +21,8 @@ public class SubCategoryController {
 
 
     @GetMapping()
-    public ResponseEntity<List<SubCategoryDTO>> getAllSubCategoryController(){
-        List<SubCategoryDTO> subCategoryDTOList = this.subCategoryService.getAllSubCategory();
+    public ResponseEntity<List<SubCategoryResponseDTO>> getAllSubCategoryController(){
+        List<SubCategoryResponseDTO> subCategoryDTOList = this.subCategoryService.getAllSubCategory();
 
         if(subCategoryDTOList.isEmpty()){
             return new ResponseEntity<>(Collections.emptyList(), HttpStatus.OK);
@@ -30,15 +33,15 @@ public class SubCategoryController {
 
 
     @PostMapping("/save")
-    public ResponseEntity<SubCategoryDTO> saveSubCategoryController(@RequestBody SubCategoryDTO subCategoryDTO){
-        SubCategoryDTO saveSubCategory = this.subCategoryService.saveSubCategory(subCategoryDTO);
+    public ResponseEntity<SubCategoryResponseDTO> saveSubCategoryController(@RequestBody SubCategoryCreateDTO subCategoryCreateDTO){
+        SubCategoryResponseDTO saveSubCategory = this.subCategoryService.saveSubCategory(subCategoryCreateDTO);
 
-        return new ResponseEntity<>(saveSubCategory,HttpStatus.OK);
+        return new ResponseEntity<>(saveSubCategory,HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SubCategoryDTO> updateSubCategoryController(@PathVariable Integer id, @RequestBody SubCategoryDTO subCategoryDTO){
-        SubCategoryDTO updateSubCategory = this.subCategoryService.updateSubCategory(id,subCategoryDTO);
+    public ResponseEntity<SubCategoryResponseDTO> updateSubCategoryController(@PathVariable Integer id, @RequestBody SubCategoryUpdateDTO subCategoryUpdateDTO){
+        SubCategoryResponseDTO updateSubCategory = this.subCategoryService.updateSubCategory(id,subCategoryUpdateDTO);
 
         return new ResponseEntity<>(updateSubCategory,HttpStatus.OK);
     }
