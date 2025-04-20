@@ -28,10 +28,10 @@ public class Product {
     private String productDesc;
 
     @Column(name = "product_price")
-    private String price;
+    private Double price;
 
     @Column(name = "product_stock")
-    private String stock;
+    private Integer stock;
 
     @Column(name = "product_image_url")
     private String imageUrl;

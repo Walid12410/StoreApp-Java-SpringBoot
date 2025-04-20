@@ -1,6 +1,7 @@
 package com.example.ecommerce.storeApp.modular.subCategory.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class SubCategoryCreateDTO {
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String subCategoryName;
 
-    @NotBlank(message = "Category id is required")
+    @NotNull(message = "Category id is required")
     private Integer categoryId;
 
 }

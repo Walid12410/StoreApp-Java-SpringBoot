@@ -19,5 +19,4 @@ public class CategoryCreateDTO {
     private String categoryName;
 
     private List<SubCategoryResponseDTO> subCategories; // Optional, can be empty
-
 }

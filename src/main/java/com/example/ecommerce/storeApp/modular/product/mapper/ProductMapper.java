@@ -1,6 +1,7 @@
 package com.example.ecommerce.storeApp.modular.product.mapper;
 
 import com.example.ecommerce.storeApp.modular.product.Product;
+import com.example.ecommerce.storeApp.modular.product.dto.ProductCreateDTO;
 import com.example.ecommerce.storeApp.modular.product.dto.ProductResponseDTO;
 import com.example.ecommerce.storeApp.modular.subCategory.mapper.SubCategoryMapper;
 
@@ -12,6 +13,7 @@ public class ProductMapper {
                .productName(entity.getProductName())
                .productDesc(entity.getProductDesc())
                .imageUrl(entity.getImageUrl())
+               .imageId(entity.getImageId())
                .price(entity.getPrice())
                .stock(entity.getStock())
                .subCategory(SubCategoryMapper.toDto(entity.getSubCategory()))
@@ -19,20 +21,16 @@ public class ProductMapper {
     }
 
 
-    public static Product toEntity(ProductResponseDTO productResponseDTO){
-        if(productResponseDTO == null){
+    public static Product toEntity(ProductCreateDTO productCreateDTO){
+        if(productCreateDTO == null){
             return null;
         }
 
         Product product = new Product();
-        product.setId(productResponseDTO.getId());
-        product.setProductName(productResponseDTO.getProductName());
-        product.setProductDesc(productResponseDTO.getProductDesc());
-        product.setImageId(productResponseDTO.getImageId());
-        product.setImageUrl(productResponseDTO.getImageUrl());
-        product.setPrice(productResponseDTO.getPrice());
-        product.setStock(productResponseDTO.getStock());
-      //  product.setSubCategory(SubCategoryMapper.toEntity(productDTO.getSubCategory()));
+        product.setProductName(productCreateDTO.getProductName());
+        product.setProductDesc(productCreateDTO.getProductDesc());
+        product.setPrice(productCreateDTO.getPrice());
+        product.setStock(productCreateDTO.getStock());
 
         return product;
     }

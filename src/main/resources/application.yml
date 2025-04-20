@@ -25,3 +25,9 @@ spring:
   server:
     port: 8080  # Change if you want to run on a different port
 
+
+
+cloudinary:
+    cloud_name: your_cloud_name
+    api_key: your_api_key
+    api_secret: your_api_secret

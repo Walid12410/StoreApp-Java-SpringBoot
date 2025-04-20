@@ -69,6 +69,13 @@
 			<version>8.3.0</version> <!-- Use the latest version -->
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.cloudinary/cloudinary-http44 -->
+		<dependency>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-http44</artifactId>
+			<version>1.39.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

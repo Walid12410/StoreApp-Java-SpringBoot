@@ -15,8 +15,8 @@ public class ProductResponseDTO {
     private Integer id;
     private String productName;
     private String productDesc;
-    private String price;
-    private String stock;
+    private Double price;
+    private Integer stock;
     private String imageId;
     private String imageUrl;
     private SubCategoryResponseDTO subCategory;
