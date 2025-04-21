@@ -19,21 +19,18 @@ public class CloudinaryService {
         this.cloudinary = cloudinary;
     }
 
-    public Map<String, String> uploadImage(MultipartFile file) throws IOException {
+    public CloudinaryImage uploadImage(MultipartFile file) throws IOException {
         File uploadedFile = convertMultiPartToFile(file);
         Map uploadResult = cloudinary.uploader().upload(uploadedFile, ObjectUtils.emptyMap());
 
         String imageUrl = (String) uploadResult.get("secure_url");
         String publicId = (String) uploadResult.get("public_id");
 
-        Map<String, String> result = new HashMap<>();
-        result.put("imageUrl", imageUrl);
-        result.put("publicId", publicId);
-
         uploadedFile.delete(); // delete temp file
 
-        return result;
+        return new CloudinaryImage(imageUrl, publicId);
     }
+
 
     public boolean deleteImage(String publicId) {
         try {

@@ -53,4 +53,10 @@ public class ProductController {
         ProductResponseDTO createProduct = this.productService.createProduct(productCreateDTO, image);
         return new ResponseEntity<>(createProduct,HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/private")
+    public ResponseEntity<Void> deleteProductController(@PathVariable Integer id){
+        this.productService.deleteProduct(id);
+        return ResponseEntity.noContent().build();
+    }
 }

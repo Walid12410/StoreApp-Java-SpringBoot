@@ -20,7 +20,7 @@ public class SubCategoryController {
     private SubCategoryService subCategoryService;
 
 
-    @GetMapping()
+    @GetMapping("/public")
     public ResponseEntity<List<SubCategoryResponseDTO>> getAllSubCategoryController(){
         List<SubCategoryResponseDTO> subCategoryDTOList = this.subCategoryService.getAllSubCategory();
 
@@ -32,21 +32,21 @@ public class SubCategoryController {
     }
 
 
-    @PostMapping("/save")
+    @PostMapping("/private")
     public ResponseEntity<SubCategoryResponseDTO> saveSubCategoryController(@RequestBody SubCategoryCreateDTO subCategoryCreateDTO){
         SubCategoryResponseDTO saveSubCategory = this.subCategoryService.saveSubCategory(subCategoryCreateDTO);
 
         return new ResponseEntity<>(saveSubCategory,HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/private/{id}")
     public ResponseEntity<SubCategoryResponseDTO> updateSubCategoryController(@PathVariable Integer id, @RequestBody SubCategoryUpdateDTO subCategoryUpdateDTO){
         SubCategoryResponseDTO updateSubCategory = this.subCategoryService.updateSubCategory(id,subCategoryUpdateDTO);
 
         return new ResponseEntity<>(updateSubCategory,HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/private/{id}")
     public ResponseEntity<Void> deleteSubCategoryController(@PathVariable Integer id){
         this.subCategoryService.deleteSubCategory(id);
         return ResponseEntity.noContent().build();

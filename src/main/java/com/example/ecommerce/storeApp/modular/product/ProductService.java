@@ -1,6 +1,8 @@
 package com.example.ecommerce.storeApp.modular.product;
 
 
+import com.example.ecommerce.storeApp.cloudinary.CloudinaryImage;
+import com.example.ecommerce.storeApp.cloudinary.CloudinaryService;
 import com.example.ecommerce.storeApp.modular.product.dto.ProductCreateDTO;
 import com.example.ecommerce.storeApp.modular.product.dto.ProductResponseDTO;
 import com.example.ecommerce.storeApp.modular.product.dto.ProductUpdateDTO;
@@ -17,19 +19,24 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import payload.ProductPagedResponse;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductService {
 
     private final ProductRepository productRepository;
     private final SubCategoryRepository subCategoryRepository;
+    private final CloudinaryService cloudinaryService;
 
     @Autowired
     public ProductService(ProductRepository productRepository,
-                          SubCategoryRepository subCategoryRepository){
+                          SubCategoryRepository subCategoryRepository,
+                          CloudinaryService cloudinaryService){
         this.productRepository = productRepository;
         this.subCategoryRepository = subCategoryRepository;
+        this.cloudinaryService = cloudinaryService;
     }
 
     public ProductPagedResponse<ProductResponseDTO> getAllProduct(Integer page, Integer size){
@@ -95,21 +102,35 @@ public class ProductService {
     }
 
 
-    public ProductResponseDTO createProduct(ProductCreateDTO productCreateDTO, MultipartFile image){
+    public ProductResponseDTO createProduct(ProductCreateDTO productCreateDTO, MultipartFile image)  {
         SubCategory existsSubCategory = this.subCategoryRepository
                 .findById(productCreateDTO.getSubCategoryId())
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"SubCategory not found"));
 
-        // TODO: Save image in cloudinary
+        // Upload image to cloudinary and get the result then save the url and public id in product
+        CloudinaryImage imageResult;
+
+        try{
+            imageResult = this.cloudinaryService.uploadImage(image);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Failed to upload image");
+        }
 
         Product product = ProductMapper.toEntity(productCreateDTO);
         product.setSubCategory(existsSubCategory);
+        product.setImageUrl(imageResult.getImageUrl());
+        product.setImageId(imageResult.getPublicId());
 
         Product savedProduct = this.productRepository.save(product);
 
         return ProductMapper.toDto(savedProduct);
     }
 
-    //TODO:DELETE METHOD, CHECK PRODUCT IF USED IN ORDER THEN DELETE
+    public void deleteProduct(Integer id){
+        Product exists = this.productRepository.findById(id)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Product not found"));
+
+        this.productRepository.delete(exists);
+    }
 
 }
