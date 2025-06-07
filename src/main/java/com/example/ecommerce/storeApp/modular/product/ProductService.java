@@ -19,9 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import payload.ProductPagedResponse;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ProductService {
