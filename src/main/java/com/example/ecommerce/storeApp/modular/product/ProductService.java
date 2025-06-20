@@ -85,7 +85,6 @@ public class ProductService {
         if(productUpdateDTO.getStock() != null){
             existProduct.setStock(productUpdateDTO.getStock());
         }
-
         if(productUpdateDTO.getSubCategoryId() != null){
             SubCategory existsSubCategory = this.subCategoryRepository
                     .findById(productUpdateDTO.getSubCategoryId())

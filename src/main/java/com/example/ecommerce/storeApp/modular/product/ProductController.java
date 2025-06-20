@@ -54,7 +54,7 @@ public class ProductController {
         return new ResponseEntity<>(createProduct,HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/private")
+    @DeleteMapping("/private/{id}")
     public ResponseEntity<Void> deleteProductController(@PathVariable Integer id){
         this.productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
